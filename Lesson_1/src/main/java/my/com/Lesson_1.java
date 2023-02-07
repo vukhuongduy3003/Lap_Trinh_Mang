@@ -300,7 +300,7 @@ public class Lesson_1 {
     }
 
     private void MenuBai8() {
-        System.out.println("1. Kiểm tra n có phải là số nguyên tố.");
+        System.out.println("\n1. Kiểm tra n có phải là số nguyên tố.");
         System.out.println("2. In ra các số nguyên tố từ 1 đến n.");
         System.out.println("3. Thoát.");
     }
@@ -485,7 +485,7 @@ public class Lesson_1 {
         System.out.println("Bài 15.");
         Integer n = 0;
         n = InputIntegerPositive(n);
-        HashMap<Integer, Integer> array = new HashMap<>();
+        Map<Integer, Integer> array = new HashMap<>();
         Integer number;
         for (Integer i = 1; i <= n; i++) {
             number = 0;
@@ -503,7 +503,50 @@ public class Lesson_1 {
                 }
             } while (0 >= number || number >= 100);
         }
-
+        TreeSet<Integer> set = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+        for (Integer i = 1; i <= array.size(); i++) {
+            set.add(array.get(i));
+            if (set.size() == 2) {
+                break;
+            }
+        }
+        System.out.print("Vị trí các phần tử lớn nhất trong mảng là: ");
+        array.forEach((key, value) -> {
+            if (set.first() == value) {
+                System.out.print(key + ", ");
+            }
+        });
+        System.out.print("\nVị trí các phần tử lớn thứ 2 trong mảng là: ");
+        array.forEach((key, value) -> {
+            if (set.last() == value) {
+                System.out.print(key + ", ");
+            }
+        });
+        System.out.print("\nSắp xếp mảng theo thứ tự giảm dần là: " + array.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).toList());
+        number = 0;
+        do {
+            try {
+                System.out.print("\nNhập số nguyên x cần chèn là: ");
+                number = Integer.parseInt(scanner.nextLine());
+                if (0 >= number || number >= 100) {
+                    System.out.println("Mời bạn nhập lại! Phần tử trong mảng có giá trị lớn hơn 0 và nhỏ hơn 100.");
+                } else {
+                    array.put(array.size() + 1, number);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Lựa chọn phải là kiểu số nguyên.");
+            }
+        } while (0 >= number || number >= 100);
+        System.out.print("Sắp xếp mảng theo thứ tự giảm dần sau khi chèn là: " + array.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).toList());
     }
 
     private String Convert(String str) {
@@ -568,10 +611,10 @@ public class Lesson_1 {
     public void Bai_19() {
         System.out.println("Bài 19.");
         List<List<Integer>> list = new ArrayList<>(2);
-        list.set(1, Arrays.asList(60, 55, 70));
-        list.set(2, Arrays.asList(80, 60, 41));
-        IntSummaryStatistics scoreStudent1 = list.get(1).stream().mapToInt((a) -> a). summaryStatistics();
-        IntSummaryStatistics scoreStudent2 = list.get(2).stream().mapToInt((a) -> a). summaryStatistics();
+        list.add(0, Arrays.asList(60, 55, 70));
+        list.add(1, Arrays.asList(80, 60, 41));
+        IntSummaryStatistics scoreStudent1 = list.get(0).stream().mapToInt((a) -> a).summaryStatistics();
+        IntSummaryStatistics scoreStudent2 = list.get(1).stream().mapToInt((a) -> a).summaryStatistics();
         System.out.println("Điểm trung bình của học sinh thứ nhất là: " + scoreStudent1.getAverage());
         System.out.println("Điểm trung bình của học sinh thứ hai là: " + scoreStudent2.getAverage());
     }
