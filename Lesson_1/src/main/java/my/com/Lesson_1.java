@@ -1,14 +1,11 @@
 package my.com;
 
 import org.apache.commons.math3.util.CombinatoricsUtils;
-import org.apache.commons.math3.util.Pair;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Lesson_1 {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void Bai_1() {
         System.out.println("Bài 1.");
@@ -233,10 +230,7 @@ public class Lesson_1 {
 
         // If sum of divisors is equal to
         // n, then n is a perfect number
-        if (sum == n)
-            return true;
-
-        return false;
+        return sum == n;
     }
 
     public void Bai_6() {
