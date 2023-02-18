@@ -1,6 +1,8 @@
 package org.example.pack.name;
 
-public class Product  implements Comparable<Product> {
+import java.util.Comparator;
+
+public class Product  implements Comparator<Product> {
     private String nameProduct;
     private String company;
     private Integer price;
@@ -39,10 +41,16 @@ public class Product  implements Comparable<Product> {
     }
 
     @Override
-    public int compareTo(Product o) {
-        if (this.getPrice() < o.getPrice()) {
-            return 1;
-        }
-        return 0;
+    public String toString() {
+        return "Product{" +
+                "nameProduct='" + nameProduct + '\'' +
+                ", company='" + company + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
+    public int compare(Product o1, Product o2) {
+        return o2.getPrice().compareTo(o1.getPrice());
     }
 }

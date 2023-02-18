@@ -11,7 +11,8 @@ public class Program
 {
     public static void main( String[] args )
     {
-        //Bai_1.Bai_1();
-        ProductMenu.ProductMenu();
+//        new Bai_1();
+//        new Bai_2();
+        new Bai_3();
     }
 }

@@ -1,9 +1,7 @@
 package org.example.pack.name;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductMenu {
     public static Scanner scanner = new Scanner(System.in);
@@ -15,7 +13,9 @@ public class ProductMenu {
         System.out.print("Nhập nhà sản xuất: ");
         product.setCompany(scanner.nextLine());
         System.out.print("Nhập giá bán: ");
-        product.setPrice(InputIntegerPositive(scanner.nextInt()));
+        Integer price = 0;
+        price = InputIntegerPositive(price);
+        product.setPrice(price);
         return product;
     }
 
@@ -28,8 +28,6 @@ public class ProductMenu {
     private static Integer InputIntegerPositive(Integer integerPositive) {
         do {
             try {
-                System.out.print("Mời bạn nhập số nguyên dương: ");
-                scanner.nextLine();
                 integerPositive = Integer.parseInt(scanner.nextLine());
                 if (integerPositive < 0) {
                     System.out.println("Số bạn vừa nhập không phải là số nguyên dương!");
@@ -58,6 +56,7 @@ public class ProductMenu {
                 choose = Integer.parseInt(scanner.nextLine());
                 switch (choose) {
                     case 1 -> {
+                        System.out.print("Mời bạn nhập số sản phẩm: ");
                         n = InputIntegerPositive(n);
                         for (int i = 0; i < n; i++) {
                             System.out.println("Nhập thông tin hàng hoá thứ " + (i + 1) + " là:");
@@ -66,11 +65,18 @@ public class ProductMenu {
                     }
                     case 2 -> {
                         System.out.println("Hiển thị thông tin: ");
-                        productList.forEach(ProductMenu::output);
+                        for (int i = 0; i < productList.size(); i++) {
+                            System.out.println("Thông tin hàng hoá thứ " + (i + 1) + " là:");
+                            output(productList.get(i));
+                        }
                     }
                     case 3 -> {
-                        Collections.sort(productList);
-                        productList.forEach(ProductMenu::output);
+                        Collections.sort(productList, new Product());
+                        System.out.println("Danh sách hàng hoá giảm dần theo giá là:");
+                        for (int i = 0; i < productList.size(); i++) {
+                            System.out.println("Thông tin hàng hoá thứ " + (i + 1) + " là:");
+                            output(productList.get(i));
+                        }
                     }
                     case 4 -> System.out.println("Đã thoát chương trình!");
                     default -> System.out.println("Không có lựa chọn!");

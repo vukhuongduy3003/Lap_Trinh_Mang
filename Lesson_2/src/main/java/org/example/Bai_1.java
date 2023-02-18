@@ -30,7 +30,7 @@ public class Bai_1 {
         System.out.println("Điểm: " + studentMark.getMark());
     }
 
-    public static void Bai_1() {
+    public Bai_1() {
         System.out.println("Nhập thông tin sinh viên thứ 1: ");
         StudentMark studentMark1 = Bai_1.input();
         System.out.println("Nhập thông tin sinh viên thứ 2: ");
